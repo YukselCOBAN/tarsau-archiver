@@ -1,4 +1,4 @@
-#include "tarsau.h"
+#include "../include/tarsau.h"
 
 #include <ctype.h>
 #include <errno.h>
@@ -7,12 +7,13 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <sys/types.h>
 
 void print_usage(const char *program_name)
 {
     fprintf(stderr, "Kullanim:\n");
     fprintf(stderr, "  %s -b dosya1 dosya2 ... [-o arsiv.sau]\n", program_name);
-    fprintf(stderr, "  %s -a arsiv.sau hedef_dizin\n", program_name);
+    fprintf(stderr, "  %s -a arsiv.sau [hedef_dizin]\n", program_name);
 }
 
 const char *base_name(const char *path)
@@ -106,4 +107,10 @@ int join_path(char *buffer, size_t buffer_size, const char *dir, const char *fil
     }
 
     return 0;
+}
+
+int has_sau_extension(const char *filename) {
+    size_t len = strlen(filename);
+    if (len < 5) return 0; 
+    return strcmp(filename + len - 4, ".sau") == 0;
 }

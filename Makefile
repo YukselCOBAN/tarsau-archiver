@@ -10,7 +10,7 @@ OBJ := $(patsubst src/%.c,$(BUILD_DIR)/%.o,$(SRC))
 all: $(TARGET)
 $(TARGET): $(OBJ) | $(BIN_DIR)
 	$(CC) $(CFLAGS) $(OBJ) -o $@ $(LDFLAGS)
-$(BUILD_DIR)/%.o: src/%.c include/tarsau.h | $(BUILD_DIR)
+$(BUILD_DIR)/%.o: src/%.c include/tarsau.h include/extract.h | $(BUILD_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 $(BUILD_DIR) $(BIN_DIR):
 	mkdir -p $@
