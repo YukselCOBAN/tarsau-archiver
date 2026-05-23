@@ -19,5 +19,5 @@ int safe_file_name(const char *name);
 int validate_ascii_text_file(const char *path, const char *display_name, off_t *size_out);
 int ensure_directory(const char *path);
 int join_path(char *buffer, size_t buffer_size, const char *dir, const char *file);
-
+int has_sau_extension(const char *filename);
 #endif

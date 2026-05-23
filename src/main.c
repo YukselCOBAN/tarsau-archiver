@@ -1,4 +1,5 @@
-#include "tarsau.h"
+#include "../include/tarsau.h"
+#include "../include/extract.h"
 
 #include <stdio.h>
 #include <string.h>
@@ -44,12 +45,20 @@ static int run_build_mode(int argc, char **argv)
 
 static int run_extract_mode(int argc, char **argv)
 {
-    if (argc != 4) {
+    // -a parametresi için argüman sayısı 3 veya 4 olmalıdır.
+    // Örn: ./tarsau -a test.sau  (argc = 3)
+    // Örn: ./tarsau -a test.sau hedef_dir (argc = 4)
+    if (argc < 3 || argc > 4) {
         print_usage(argv[0]);
         return 1;
     }
 
-    return extract_archive(argv[2], argv[3]);
+    const char *archive_name = argv[2];
+    const char *target_dir = (argc == 4) ? argv[3] : NULL;
+
+    // Senin yazdığın fonksiyon tetikleniyor
+    handle_extract(archive_name, target_dir);
+    return 0;
 }
 
 int main(int argc, char **argv)
